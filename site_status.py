@@ -1,25 +1,25 @@
 import requests
 import sys
+import time
 
 def url_normalizer(url):
-	for addy in url:
-		# if str(addy[0]+addy[1]+addy[2]+addy[3]).lower != 'http':
-		#	addy = 'https://' + addy
-		pass
+	if str(url[0]+url[1]+url[2]+url[3]).lower() != 'http':
+		addy = 'https://' + url
+		return addy
+	else:
+		return url
 
-def timer():
-    pass
-    
+def timer(secs):
+	print('\n\nChecking status ... \n')
+	time.sleep(secs)
+
+
 def check_site(url):
-	for addy in url:
-		url_normalizer(addy)
-		r = requests.get(addy)
+	for addy in url[1:]:
+		# print(url_normalizer(addy))
+		r = requests.get(url_normalizer(addy))
 		print(f'The current status code for {addy} is:  {r.status_code}')
-		
 
-check_site(sys.argv)
-
-	
-
-	
-
+for n in range(0,10):
+	check_site(sys.argv)
+	timer(5)
