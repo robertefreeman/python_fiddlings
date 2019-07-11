@@ -2,7 +2,10 @@ import requests
 import sys
 
 def url_normalizer(url):
-    pass
+	for addy in url:
+		# if str(addy[0]+addy[1]+addy[2]+addy[3]).lower != 'http':
+		#	addy = 'https://' + addy
+		pass
 
 def timer():
     pass
