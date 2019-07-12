@@ -16,7 +16,13 @@ def url_normalizer(url):
 
 # Function to log status data back to a .txt file
 def logger(data):
-	pass
+	f = open("site_stat_log.txt", "a")
+	f.write(data)
+	f.close()
+
+	# Open and read the file after the appending:
+	# f = open("demofile2.txt", "r")
+	# print(f.read())
 
 # Function to push email notification if sites is not available	
 def notifier():
@@ -33,8 +39,10 @@ def check_site(url):
 		
 		try:
 			r = requests.get(url_normalizer(addy))
+			logger(str(addy + ': ' + r.status_code))
 			print(f'The current status code for {addy} is:  {r.status_code}')
 		except:
+			logger(str(addy + ': Down'))
 			print(f'The current status code of {addy} is: Down')
 
 # program run 
