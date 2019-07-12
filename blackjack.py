@@ -1,6 +1,6 @@
-'''
-Rob Jack: A simple blackjack game
-'''
+
+# Rob Jack: A simple blackjack game
+# Author: @robertefreeman
 
 import random
 
