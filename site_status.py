@@ -16,7 +16,7 @@ def url_normalizer(url):
 
 # Function to log status data back to a .txt file
 def logger(data):
-	f = open("site_stat_log.txt", "a")
+	f = open("status_log.txt", "a")
 	f.write(data)
 	f.close()
 
@@ -24,7 +24,7 @@ def logger(data):
 	# f = open("demofile2.txt", "r")
 	# print(f.read())
 
-# Function to push email notification if sites is not available	
+# Function to push email notification if sites is not available
 def notifier():
 	pass
 
@@ -35,17 +35,18 @@ def timer(secs):
 
 # Function to retrieve status code for a website
 def check_site(url):
+	headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 	for addy in url[1:]:
-		
+
 		try:
-			r = requests.get(url_normalizer(addy))
-			logger(str(addy + ': ' + r.status_code))
+			r = requests.get(url_normalizer(addy),headers=headers)
+			logger(str(addy + ': ' + str(r.status_code) + ' \n'))
 			print(f'The current status code for {addy} is:  {r.status_code}')
 		except:
-			logger(str(addy + ': Down'))
-			print(f'The current status code of {addy} is: Down')
+			logger(str(addy + ': Down\n'))
+			print(f'The current status code of {addy} is: Down \n')
 
-# program run 
+# program run
 for n in range(0,2):
 	check_site(sys.argv)
 	timer(1)
